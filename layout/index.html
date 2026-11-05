@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./style.css" />
-    <title>Виселица</title>
+    <title>Hangman</title>
   </head>
   <body>
     <div id="app">
-      <h1>Виселица</h1>
-      <p>Отгадайте имя - введите букву</p>
+      <h1>Hangman</h1>
+      <p>Guess a name - pick a letter</p>
       <div class="game-container">
         <svg height="250" width="200" class="figure-container">
           <!-- Rod -->
@@ -18,7 +18,7 @@
           <line x1="140" y1="20" x2="140" y2="50" />
           <line x1="60" y1="20" x2="60" y2="230" />
           <line x1="20" y1="230" x2="100" y2="230" />
-  
+
           <!-- Head -->
           <circle cx="140" cy="70" r="20" />
           <!-- Body -->
@@ -30,40 +30,40 @@
           <!-- <line x1="140" y1="150" x2="120" y2="180" />
           <line x1="140" y1="150" x2="160" y2="180" /> -->
         </svg>
-  
+
         <div class="wrong-letters-container">
           <div class="wrong-letters">
-            <p>Ошибки</p>
-            <span>п , </span>
-            <span>м , </span>
-            <span>с </span>
+            <p>Errors</p>
+            <span>p , </span>
+            <span>m , </span>
+            <span>s </span>
           </div>
         </div>
-  
+
         <div class="word">
           <span class="letter">л</span>
           <span class="letter"></span>
-          <span class="letter">д</span>
+          <span class="letter">d</span>
           <span class="letter"></span>
           <span class="letter"></span>
         </div>
       </div>
-  
+
       <!-- Container for final message -->
       <div class="popup-container">
         <div class="popup">
           <h2>
-            <h2>Поздравляю, вы победили! 😃</h2>
-            <!-- <h2>Вы проиграли. 😕</h2> -->
+            <h2>Congrats, you win! 😃</h2>
+            <!-- <h2>You lose. 😕</h2> -->
           </h2>
-          <!-- <h3>...имя: Лидия</h3> -->
-          <button>Сыграть еще раз</button>
+          <!-- <h3>...name: Lidya</h3> -->
+          <button>Try again</button>
         </div>
       </div>
-  
+
       <!-- Notification -->
       <div class="notification-container show">
-        <p>Вы уже вводили этот символ</p>
+        <p>You already picked this letter</p>
       </div>
     </div>
   </body>

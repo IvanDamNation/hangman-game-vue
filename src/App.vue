@@ -1,0 +1,56 @@
+<template>
+  <h1>Hangman</h1>
+  <p>Guess a name - pick a letter</p>
+  <div class="game-container">
+    <svg height="250" width="200" class="figure-container">
+      <!-- Rod -->
+      <line x1="60" y1="20" x2="140" y2="20" />
+      <line x1="140" y1="20" x2="140" y2="50" />
+      <line x1="60" y1="20" x2="60" y2="230" />
+      <line x1="20" y1="230" x2="100" y2="230" />
+
+      <!-- Head -->
+      <circle cx="140" cy="70" r="20" />
+      <!-- Body -->
+      <line x1="140" y1="90" x2="140" y2="150" />
+      <!-- Arms -->
+      <!-- <line x1="140" y1="120" x2="120" y2="100" />
+    <line x1="140" y1="120" x2="160" y2="100" /> -->
+      <!-- Legs -->
+      <!-- <line x1="140" y1="150" x2="120" y2="180" />
+    <line x1="140" y1="150" x2="160" y2="180" /> -->
+    </svg>
+
+    <div class="wrong-letters-container">
+      <div class="wrong-letters">
+        <p>Errors</p>
+        <span>p , </span>
+        <span>m , </span>
+        <span>s </span>
+      </div>
+    </div>
+
+    <div class="word">
+      <span class="letter">л</span>
+      <span class="letter"></span>
+      <span class="letter">d</span>
+      <span class="letter"></span>
+      <span class="letter"></span>
+    </div>
+  </div>
+
+  <!-- Container for final message -->
+  <div v-if="false" class="popup-container">
+    <div class="popup">
+      <h2>Congrats, you win! 😃</h2>
+      <!-- <2>You lose. 😕</2> -->
+      <!-- <h2>...name: Lidya</h2> -->
+      <button>Try again</button>
+    </div>
+  </div>
+
+  <!-- Notification -->
+  <div class="notification-container show">
+    <p>You already picked this letter</p>
+  </div>
+</template>
