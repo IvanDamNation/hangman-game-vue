@@ -15,6 +15,6 @@ import GameWord from './components/GameWord.vue'
     <GameWord />
   </div>
 
-  <GamePopup />
+  <GamePopup v-if="false" />
   <GameNotification />
 </template>
