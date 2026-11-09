@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
+import checker from 'vite-plugin-checker'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
@@ -9,6 +10,16 @@ export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
+    checker({
+      vueTsc: {
+        tsconfigPath: './tsconfig.app.json',
+      },
+      typescript: true,
+      overlay: {
+        initialIsOpen: true,
+        position: 'tl',
+      },
+    }),
   ],
   resolve: {
     alias: {

@@ -4,7 +4,10 @@
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     // Extra safety for array and object lookups, but may have false positives.
+    "strict": true,
     "noUncheckedIndexedAccess": true,
+    "noEmitOnError": false,
+    "skipLibCheck": true,
 
     // Path mapping for cleaner imports.
     "paths": {
