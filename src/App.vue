@@ -7,6 +7,8 @@ import GameNotification from './components/GameNotification.vue'
 import GamePopup from './components/GamePopup.vue'
 import GameWord from './components/GameWord.vue'
 
+const MAX_ERRORS = 6
+
 const word = ref('example')
 const enteredLetters = ref<string[]>([])
 const popupRef = ref<InstanceType<typeof GameNotification> | null>(null)
@@ -19,7 +21,13 @@ const wrongLetters = computed(() =>
   enteredLetters.value.filter((char) => !word.value.includes(char)),
 )
 
+const isStatusWin = computed(() => word.value.split('').every((char) => enteredLetters.value.includes(char)))
+const isStatusLose = computed(() => wrongLetters.value.length >= MAX_ERRORS)
+const isGameOver = computed(() => isStatusWin.value || isStatusLose.value)
+
 const handleKeydown = (event: KeyboardEvent) => {
+  if (isGameOver.value) return
+
   const key = event.key.toLowerCase()
   if (/^[a-zа-яё]$/.test(key)) {
     if (enteredLetters.value.includes(key)) {
@@ -28,6 +36,10 @@ const handleKeydown = (event: KeyboardEvent) => {
       enteredLetters.value.push(key)
     }
   }
+}
+
+const restartGame = () => {
+  enteredLetters.value = []
 }
 
 onMounted(() => window.addEventListener('keydown', handleKeydown))
@@ -49,6 +61,6 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
     <GameWord :word="word" :correct-letters="correctLetters" />
   </div>
 
-  <GamePopup v-if="false" />
+  <GamePopup v-if="isGameOver" :is-win="isStatusWin" :secret-word="word" @restart="restartGame" />
   <GameNotification ref="popupRef" />
 </template>
