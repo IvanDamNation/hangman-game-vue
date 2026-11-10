@@ -9,6 +9,7 @@ import GameWord from './components/GameWord.vue'
 
 const word = ref('example')
 const enteredLetters = ref<string[]>([])
+const popupRef = ref<InstanceType<typeof GameNotification> | null>(null)
 
 // TODO: optimization O(NM) => O(N)
 const correctLetters = computed(() =>
@@ -18,11 +19,14 @@ const wrongLetters = computed(() =>
   enteredLetters.value.filter((char) => !word.value.includes(char)),
 )
 
-// TODO: only unique keys
 const handleKeydown = (event: KeyboardEvent) => {
   const key = event.key.toLowerCase()
   if (/^[a-zа-яё]$/.test(key)) {
-    enteredLetters.value.push(key)
+    if (enteredLetters.value.includes(key)) {
+      popupRef.value?.triggerShow()
+    } else {
+      enteredLetters.value.push(key)
+    }
   }
 }
 
@@ -31,10 +35,11 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
 </script>
 
 <template>
-  {{ word }}
-  {{ enteredLetters }}
-  {{ correctLetters }}
-  {{ wrongLetters }}
+  <div>{{ word }}</div>
+  <div>{{ enteredLetters }}</div>
+  <div>{{ correctLetters }}</div>
+  <div>{{ wrongLetters }}</div>
+
   <GameHeader />
   <div class="game-container">
     <GameFigure />
@@ -43,5 +48,5 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
   </div>
 
   <GamePopup v-if="false" />
-  <GameNotification />
+  <GameNotification ref="popupRef" />
 </template>
