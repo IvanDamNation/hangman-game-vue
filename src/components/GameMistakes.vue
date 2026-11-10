@@ -1,10 +1,22 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+
+interface Props {
+  wrongLetters: string[]
+}
+
+const { wrongLetters } = defineProps<Props>()
+
+const formattedWrongLetters = computed<string>(() => wrongLetters.join(', '))
+</script>
+
 <template>
-  <div class="wrong-letters-container">
+  <div v-if="wrongLetters.length" class="wrong-letters-container">
     <div class="wrong-letters">
       <p>Errors</p>
-      <span>p , </span>
-      <span>m , </span>
-      <span>s </span>
+      <span>
+        {{ formattedWrongLetters }}
+      </span>
     </div>
   </div>
 </template>
