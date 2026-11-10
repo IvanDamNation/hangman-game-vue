@@ -35,14 +35,16 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
 </script>
 
 <template>
+  <!-- DEBUG -->
   <div>{{ word }}</div>
   <div>{{ enteredLetters }}</div>
   <div>{{ correctLetters }}</div>
   <div>{{ wrongLetters }}</div>
+  <!-- DEBUG (END) -->
 
   <GameHeader />
   <div class="game-container">
-    <GameFigure />
+    <GameFigure :errors-count="wrongLetters.length" />
     <GameMistakes :wrong-letters="wrongLetters" />
     <GameWord :word="word" :correct-letters="correctLetters" />
   </div>
