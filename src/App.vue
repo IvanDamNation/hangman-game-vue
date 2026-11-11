@@ -9,7 +9,24 @@ import GameWord from './components/GameWord.vue'
 
 const MAX_ERRORS = 6
 
-const word = ref('example')
+const WORDS_BANK = [
+  'example',
+  'vue',
+  'typescript',
+  'frontend',
+  'programming',
+  'javascript',
+  'component',
+]
+
+const getRandomWord = (currentWord: string = ''): string => {
+  const avaliableWords = WORDS_BANK.filter((w) => w !== currentWord)
+  const sourceList = avaliableWords.length > 0 ? avaliableWords : WORDS_BANK
+  const randomIndex = Math.floor(Math.random() * sourceList.length)
+  return sourceList[randomIndex]!
+}
+
+const word = ref(getRandomWord())
 const enteredLetters = ref<string[]>([])
 const popupRef = ref<InstanceType<typeof GameNotification> | null>(null)
 
@@ -42,6 +59,7 @@ const handleKeydown = (event: KeyboardEvent) => {
 
 const restartGame = () => {
   enteredLetters.value = []
+  word.value = getRandomWord(word.value)
 }
 
 onMounted(() => window.addEventListener('keydown', handleKeydown))
@@ -49,13 +67,6 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
 </script>
 
 <template>
-  <!-- DEBUG -->
-  <div>{{ word }}</div>
-  <div>{{ enteredLetters }}</div>
-  <div>{{ correctLetters }}</div>
-  <div>{{ wrongLetters }}</div>
-  <!-- DEBUG (END) -->
-
   <GameHeader />
   <div class="game-container">
     <GameFigure :errors-count="wrongLetters.length" />
