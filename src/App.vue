@@ -13,15 +13,17 @@ const word = ref('example')
 const enteredLetters = ref<string[]>([])
 const popupRef = ref<InstanceType<typeof GameNotification> | null>(null)
 
-// TODO: optimization O(NM) => O(N)
+const wordLetterSet = computed(() => new Set(word.value.split('')))
 const correctLetters = computed(() =>
-  enteredLetters.value.filter((char) => word.value.includes(char)),
+  enteredLetters.value.filter((char) => wordLetterSet.value.has(char)),
 )
 const wrongLetters = computed(() =>
-  enteredLetters.value.filter((char) => !word.value.includes(char)),
+  enteredLetters.value.filter((char) => !wordLetterSet.value.has(char)),
 )
 
-const isStatusWin = computed(() => word.value.split('').every((char) => enteredLetters.value.includes(char)))
+const isStatusWin = computed(() =>
+  [...wordLetterSet.value].every((char) => enteredLetters.value.includes(char)),
+)
 const isStatusLose = computed(() => wrongLetters.value.length >= MAX_ERRORS)
 const isGameOver = computed(() => isStatusWin.value || isStatusLose.value)
 
