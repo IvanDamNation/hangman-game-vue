@@ -1,10 +1,12 @@
 # .
 
-This template should help get you started developing with Vue 3 in Vite.
+Some tryout for Vue3TS.
 
-## Recommended IDE Setup
+Controls: push key on keyboard to make a guess.
+Restart avaliable on every game over.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Customizable word pool in App.vue (WORDS_BANK).
+Random word from pool on each restart.
 
 ## Recommended Browser Setup
 
@@ -16,8 +18,6 @@ This template should help get you started developing with Vue 3 in Vite.
   - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
 
 ## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
 ## Customize configuration
 
